@@ -3,5 +3,9 @@
   "version": "0.1.0",
   "engines": {
     "node": ">=14.x"
+  },
+  "dependencies": {
+    "@types/marked": "^4.0.7",
+    "marked": "^4.2.2"
   }
 }

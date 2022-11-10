@@ -1,0 +1,6 @@
+
+¿Para qué necesitamos la criptografía asimétrica?
+
+Cuando enviamos datos por internet, ya sea una imagen, un archivo o sólo un simple mensaje, corremos el riesgo de que nos roben nuestra información en el intento, antes de que llegue al receptor.
+
+https://platzi.com/tutoriales/1557-git-github/4067-configurar-llaves-ssh-en-git-y-github/
