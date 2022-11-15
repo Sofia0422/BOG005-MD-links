@@ -4,5 +4,14 @@
   },
   "parserOptions": {
     "ecmaVersion": 8
+  },
+  "rules": {
+    "linebreak-style":"off",
+    "camelcase":"off",
+    "no-continue":"off",
+    "no-plusplus":"off",
+    "guard-for-in":"off",
+    "no-restricted-syntax":"off",
+    "no-undef":"off"
   }
 }

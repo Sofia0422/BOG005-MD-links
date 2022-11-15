@@ -7,4 +7,3 @@ tiene
 Lenguaje Javascript
 Lenguaje de programación interpretado utilizado en el lado del cliente (front-end) para dotar de mejoras dinámicas e interactivas a las páginas web.
 
-[Javascript](https://lenguajejs.com/javascript/)
