@@ -1,85 +1,61 @@
-const fsp = require('fs').promises;
+const fs = require('fs');
+const marked = require('marked');
+const fecth = require('node-fetch');
 
 const argsTerminal = process.argv;
-const axios = require('axios').default;
 
-const readfilePromise = (path) => {
-  const linksArray = [];
-  const reg = /\[(.+)\]\((https?:\/\/[^\s]+)(?: "(.+)")?\)|(https?:\/\/[^\s]+)/gi;
-  return fsp.readFile(path, 'utf-8').then((data) => {
-    const links = data.match(reg);
-    if (links === null) {
-      const file = path.split('\\').pop().split('/').pop();
-      console.log('No se encontraron enlaces en el archivo ', file);
-    } else {
-      for (const i in links) {
-        const text = reg.exec(links[i]);
-        if (text === null || text === undefined) {
-          continue;
-        } else {
-          const filteredLinks = text.filter((link) => link !== undefined);
-          const data_json = { href: filteredLinks[2], text: filteredLinks[1], file: path };
-          linksArray.push(data_json);
-        }
+const readFileMd = (fileMd) => {
+  const arrayLinks = [];
+  return new Promise((resolve, reject) => {
+    fs.readFile(fileMd, 'utf-8', (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        const renderer = new marked.Renderer();
+        renderer.link = (href, title, text) => {
+          const infoLinks = {
+            href,
+            title: text,
+            file: fileMd,
+          };
+          if (infoLinks.href.includes('http')) {
+            arrayLinks.push(infoLinks);
+          }
+        };
+        marked.marked(data, { renderer });
       }
-    }
-    /*  console.log(linksArray) */
-    return linksArray;
+      /* console.log(arrayLinks); */
+      resolve(arrayLinks);
+    });
   });
 };
 
-const extractLinks = (paths) => {
-  const promiseArray = [];
-  for (const path of paths) {
-    promiseArray.push(readfilePromise(path));
-  }
-  return Promise.all(promiseArray).then((values) => values.flat());
+const readAllFilesMds = (arrayMdFiles) => {
+  /* console.log('Obtener arrayMds', arrayMdFiles); */
+  const arrLinks = arrayMdFiles.map((fileMd) => readFileMd(fileMd));
+  return Promise.all(arrLinks).then((res) => res.flat());
 };
+const validateLinks = (array) => {
+  array.forEach(obj  => {
+    fetch(obj.href).then((response)=>{
+      console.log(response.status, 41);
 
-const validateLink = (url) => {
-  let linkOk = {};
-  return axios.get(url)
-    .then((response) => {
-      linkOk = {
-        status: response.status,
-        ok: response.statusText,
-      };
-      return linkOk;
     })
-    .catch((e) => {
-      if ((e.response !== null) || (e.response !== undefined)) {
-        linkOk.status = 404;
-      } else {
-        linkOk.status = e.response.status;
-      }
-      linkOk.ok = 'Fail';
-      console.log(linkOk);
-      return linkOk;
-    });
-};
+    
+  });
+ /*  console.log(array, 38); */
+  
 
-const validateLinks = (urls, options) => {
-  const promises = [];
-  if (options) {
-    for (let i = 0; i < urls.length; i++) {
-      const aUrl = urls[i].href;
-      promises.push(validateLink(aUrl).then((link) => {
-        const newLinks = Object.assign(urls[i], link);
-        return newLinks;
-      }));
-    }
-    /* console.log(Promise.all(promises)); */
-    return Promise.all(promises);
-  }
-  console.log(Promise.resolve(urls));
-  return Promise.resolve(urls);
-};
+}
 
-readfilePromise(argsTerminal[2]);
-validateLinks(argsTerminal[2]);
+readFileMd(argsTerminal[2]).then((array)=> {
+  /* console.log(array, 35); */
+validateLinks(array);
+
+});
+
 
 module.exports = {
-  readfilePromise,
-  extractLinks,
-  validateLinks,
+  readFileMd,
+  readAllFilesMds,
 };
