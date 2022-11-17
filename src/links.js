@@ -24,7 +24,7 @@ const readFileMd = (fileMd) => {
         };
         marked.marked(data, { renderer });
       }
-      /* console.log(arrayLinks); */
+      console.log(arrayLinks, 27);
       resolve(arrayLinks);
     });
   });
@@ -38,47 +38,33 @@ const readFileMd = (fileMd) => {
 
 //Tati
 const validateLinks = (arrayLinks) => {
-  const arrayPromes = arrayLinks.map(obj => fetch(obj.href)
+  const arrayPromes = arrayLinks.map(obj =>fetch(obj.href)
     .then((response) => ({      
       href: obj.href,      
-      text: obj.text,
-      file: obj.fileName,
+      text: obj.title,
+      file: obj.file,
       status: res.status,
       ok: res.ok ? 'OK' : 'FAIL'     
-    }))
+  }))
     .catch(() => ({
       href: obj.href,
-      text: obj.text,
-      file: obj.fileName,
+      text: obj.title,
+      file: obj.file,
       status: 500,
       ok: 'FAIL'
-    })));      
-    console.log(Promise.all(arrayPromes));  
-  return Promise.all(arrayPromes);
-}; 
+    })));  
+       const promesa = Promise.all(arrayPromes)
+    console.log(promesa); 
+  return promesa;
+};  
 
-//Genésis
-/* const validateLinks = (array) => {
-  array.forEach(obj  => {
-    fetch(obj.href).then((response)=>{
-      console.log(response.ok, 65);
-   })    
-  });
-   console.log(array, 38);
-}
-
-readFileMd(argsTerminal).then((array)=> {
-console.log(array, 35);
-validateLinks(array);
-}); */
 
 readFileMd(argsTerminal).then((arrayLinks) =>{
-  /*console.log(arrayLinks, 75);*/
-  validateLinks(arrayLinks);
-})
-
-
-
+ /*  console.log(arrayLinks, 75); */
+  validateLinks(arrayLinks).then((param)=>{
+    console.log(param);
+  })
+}) 
 
 module.exports = {
   readFileMd,
