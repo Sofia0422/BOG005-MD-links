@@ -1,8 +1,8 @@
 const fs = require('fs');
 const marked = require('marked');
-const fecth = require('node-fetch');
+const fetch = require('node-fetch');
 
-const argsTerminal = process.argv;
+const argsTerminal = process.argv[2];
 
 const readFileMd = (fileMd) => {
   const arrayLinks = [];
@@ -30,32 +30,57 @@ const readFileMd = (fileMd) => {
   });
 };
 
-const readAllFilesMds = (arrayMdFiles) => {
+/* const readAllFilesMds = (arrayMdFiles) => {
   /* console.log('Obtener arrayMds', arrayMdFiles); */
-  const arrLinks = arrayMdFiles.map((fileMd) => readFileMd(fileMd));
+  /*const arrLinks = arrayMdFiles.map((fileMd) => readFileMd(fileMd));
   return Promise.all(arrLinks).then((res) => res.flat());
-};
-const validateLinks = (array) => {
+/*}; */
+
+//Tati
+const validateLinks = (arrayLinks) => {
+  const arrayPromes = arrayLinks.map(obj => fetch(obj.href)
+    .then((response) => ({      
+      href: obj.href,      
+      text: obj.text,
+      file: obj.fileName,
+      status: res.status,
+      ok: res.ok ? 'OK' : 'FAIL'     
+    }))
+    .catch(() => ({
+      href: obj.href,
+      text: obj.text,
+      file: obj.fileName,
+      status: 500,
+      ok: 'FAIL'
+    })));      
+    console.log(Promise.all(arrayPromes));  
+  return Promise.all(arrayPromes);
+}; 
+
+//Genésis
+/* const validateLinks = (array) => {
   array.forEach(obj  => {
     fetch(obj.href).then((response)=>{
-      console.log(response.status, 41);
-
-    })
-    
+      console.log(response.ok, 65);
+   })    
   });
- /*  console.log(array, 38); */
-  
-
+   console.log(array, 38);
 }
 
-readFileMd(argsTerminal[2]).then((array)=> {
-  /* console.log(array, 35); */
+readFileMd(argsTerminal).then((array)=> {
+console.log(array, 35);
 validateLinks(array);
+}); */
 
-});
+readFileMd(argsTerminal).then((arrayLinks) =>{
+  /*console.log(arrayLinks, 75);*/
+  validateLinks(arrayLinks);
+})
+
+
 
 
 module.exports = {
   readFileMd,
-  readAllFilesMds,
+  validateLinks,
 };

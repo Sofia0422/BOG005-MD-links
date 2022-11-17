@@ -21,6 +21,6 @@ const mdLinks = (path, options={validate:false}) => {
 }
 
 mdLinks(rutaTerminal)
-.then(rest => console.log(`respuesta md-lnks:
+.then(rest => console.log(`respuesta md-links:
 ${rest}`))
 .catch(err=>console.log(err));

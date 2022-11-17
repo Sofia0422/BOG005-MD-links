@@ -13,6 +13,7 @@
     "guard-for-in":"off",
     "no-restricted-syntax":"off",
     "no-undef":"off",
-    "eol-last":"off"
+    "eol-last":"off",
+    "padded-blocks":"off"
   }
 }
