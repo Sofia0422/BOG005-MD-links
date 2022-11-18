@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const argsTerminal = process.argv[2];
 
 // Función para confirmar si un directorio existe
 const isDirectory = (param) => {
@@ -28,28 +27,27 @@ const getMdFiles = (param) => {
   let allMdFiles = [];
   /* console.log('Ruta :', param); */
   if (!isDirectory(param)) {
-    if (mdFiles(param)) {
+    // if (mdFiles(param)) {
       allMdFiles.push(param);
-    }
-  } else {
+  }
+  else {
     // leer de forma asincrónica el contenido de un directorio
     const readDirectorFiles = fs.readdirSync(param);
-    const absolutePath = readDirectorFiles.map((fileName) => path.join(param, fileName));
+    let absolutePath = readDirectorFiles.map((fileName) => path.join(param, fileName));
     absolutePath.forEach((fileNamePath) => {
-      allMdFiles = allMdFiles.concat(getMdFiles(fileNamePath));
+      if(isDirectory(param)) {
+        allMdFiles = allMdFiles.concat(getMdFiles(fileNamePath));
+      } else {
+        allMdFiles.push(fileNamePath)
+      }
     });
   }
   /* console.log(allMdFiles); */
-  return allMdFiles;
+  return allMdFiles.filter(elem=>mdFiles(elem))
   // la función retorna un array con todos los archivos .md
 };
 
-isDirectory(argsTerminal);
-contentDir(argsTerminal);
-mdFiles(argsTerminal);
-getMdFiles(argsTerminal);
 
 module.exports = {
-  isDirectory,
   getMdFiles,
 };
