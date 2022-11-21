@@ -41,19 +41,19 @@ const stats = (arrayPrueba) => {
 }
 
 const statsAndValidate = (arrayPrueba) => {
-    /* console.log('Contenido arrayPrueba', arrayPrueba, 36) */ 
+/*    console.log('Contenido arrayPrueba', arrayPrueba, 36)  */
     const broken = arrayPrueba.filter((links) => links.ok === 'FAIL').length;
     total = {
         'Total': arrayPrueba.length,
         'Unique': new Set(arrayPrueba.map((element) => element.href)).size,
         'Broken': broken
     }
-    /* console.log(total, 43)  */
+   /*  console.log(total, 43)   */
     return total
 }
 
-stats(arrayPrueba);
-statsAndValidate(arrayPrueba);  
+/* stats(arrayPrueba);
+statsAndValidate(arrayPrueba);   */
 
 module.exports = {
     stats,
