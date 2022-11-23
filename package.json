@@ -1,9 +1,16 @@
 {
-  "name": "md-links",
-  "version": "0.1.0",
+  "name": "isofiabustosa-md-links",
+  "version": "1.0.0",  
   "engines": {
     "node": ">=14.x"
   },
+
+  "description": "Libreria que busca archivos con extensión .md y valida los links contenidos en ellos",
+  "main": "src/index.js",
+  "bin": {
+    "md-links": "src/cli.js"
+  },
+  
   "dependencies": {
     "@types/marked": "^4.0.7",    
     "marked": "^4.2.2",
@@ -15,14 +22,15 @@
     "eslint-plugin-import": "^2.26.0",
     "jest": "^29.3.1"
   },
-  "description": "",
-  "main": "src/index.js",
+  
 
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "jest --verbose --coverage",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "eslint": "eslint src/** cli.js index.js test/**",
     "eslint:fix": "npm run eslint -- --fix",
     "build": "npm run eslint:fix && npm tun test"
@@ -32,7 +40,7 @@
     "url": "git+https://github.com/Sofia0422/BOG005-MD-links.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sofía Bustos",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Sofia0422/BOG005-MD-links/issues"
