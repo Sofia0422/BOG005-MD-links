@@ -18,7 +18,7 @@ la información que se quiere compartir.
 
 ## 2. Diagramas de Flujo
 
-con el fin de visualizar mejor las actividades a realizar y planificar las tareas y objetivos, fueron elaborados 2 diagramas de flujo.
+Con el fin de visualizar mejor las actividades a realizar y planificar las tareas y objetivos, fueron elaborados 2 diagramas de flujo.
 
 ### 2.1. Diagrama de Flujo - Ruta
 
