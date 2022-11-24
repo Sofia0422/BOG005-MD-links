@@ -1,14 +1,14 @@
 {
   "name": "isofiabustosa-md-links",
-  "version": "1.0.0",  
+  "version": "1.2.0",  
   "engines": {
     "node": ">=14.x"
   },
 
   "description": "Libreria que busca archivos con extensión .md y valida los links contenidos en ellos",
-  "main": "src/index.js",
+  "main": "index.js",
   "bin": {
-    "md-links": "src/cli.js"
+    "md-links": "./src/cli.js"
   },
   
   "dependencies": {
