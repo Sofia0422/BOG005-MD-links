@@ -20,8 +20,8 @@ describe('Testing isPathAbsolute', () => {
     expect(typeof isPathAbsolute).toBe('function');
   })
   it('Should convert relative route into absolute', () => {
-    let relativeRoute = './__mocks__/mock-directory';
-    let absoluteRoute = 'C:\\Users\\Usuario\\Documents\\GitHub\\BOG005-MD-links\\__mocks__\\mock-directory';
+    let relativeRoute = './__mocks__/mock-pruebas';
+    let absoluteRoute = 'C:\\Users\\Usuario\\Documents\\GitHub\\BOG005-MD-links\\__mocks__\\mock-pruebas';
 
     let realResult = isPathAbsolute(relativeRoute);
 

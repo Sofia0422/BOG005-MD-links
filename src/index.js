@@ -6,8 +6,8 @@ const { getMdFiles } = require("./readDir");
 
 const mdLinks = (path, options={ validate: false }) => {
     return new Promise((resolve, reject) =>{
-        const absolutePaht = isPathAbsolute(path)
-        const arrayMds = getMdFiles(absolutePaht)
+        const absolutePath = isPathAbsolute(path)
+        const arrayMds = getMdFiles(absolutePath)
         if(options.validate === true) {
             readAllFilesMds(arrayMds)
             .then((response) => validateLinks(response))
