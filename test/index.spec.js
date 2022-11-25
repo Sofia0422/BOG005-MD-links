@@ -2,7 +2,7 @@ const { mdLinks } = require('../src/index');
 const { valFalse, valTrue } = require('./mdLinks-expected-result');
 
 describe('mdLinks', () => {
-    it ('Receives a directory and looks for links correctly - Receives Validate False', () => {
+    it ('Recibe un directorio y busca enlaces correctamente - Recibe Validate False', () => {
         
         const mockRoute = 'C:\\Users\\Usuario\\Documents\\GitHub\\BOG005-MD-links\\__mocks__\\mock-pruebas';
          return mdLinks(mockRoute).then((validationResult) => {
@@ -10,7 +10,7 @@ describe('mdLinks', () => {
         });
     })
 
-    it ('Handles validate true returning an array of objects with status & ok', () => {
+    it ('Maneja validar verdadero devolviendo una matriz de objetos con estado y ok', () => {
         
         const mockRoute = 'C:\\Users\\Usuario\\Documents\\GitHub\\BOG005-MD-links\\__mocks__\\mock-pruebas';
         return mdLinks(mockRoute, options={validate:true}).then((validationResult) => {

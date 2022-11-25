@@ -3,11 +3,11 @@ const { getMdFiles } = require('../src/readDir');
 
 describe('getMdFiles function', () => {
 
-  it('Should be a function', () => {
+  it('Deberia ser una funcion', () => {
     expect(typeof getMdFiles).toBe('function');
   });
 
-  it('Should return all mdFiles from mock pruebas', () => {
+  it('Debería devolver todos los mdFiles de mocks de pruebas', () => {
     const secondTestRoute = 'C:/Users/Usuario/Documents/GitHub/BOG005-MD-links/__mocks__/mock-pruebas';
     const getMdFilesFunction = getMdFiles(secondTestRoute);
     const expectedResult = [

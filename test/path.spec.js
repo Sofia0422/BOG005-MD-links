@@ -2,24 +2,24 @@ const { isPathAbsolute, isPathExist } = require('../src/path');
 
 // Test para conversión de ruta relativa en absoluta
 
-describe('Testing isPathExist', () => {
-  it('Should be a function', () => {
+describe('Probando isPathExist', () => {
+  it('Deberia ser una función', () => {
     expect(typeof isPathExist).toBe('function');
   });
 
-  it('Should determine the Testing route exists', () => {
-    const existingRoute = 'C:/Users/Usuario/Documents/GitHub/BOG005-MD-links/src/testFile';
+  it('Debe determinar que existe la ruta de prueba', () => {
+    const existingRoute = 'C:/Users/Usuario/Documents/GitHub/BOG005-MD-links/src/test';
     const isPathExistFunction = isPathExist(existingRoute);
     const expectedResult = console.log('La ruta existe. Puede continuar');
 
     expect(isPathExistFunction).toBe(expectedResult);
   })
 
-describe('Testing isPathAbsolute', () => {
-  it('Should be a function', () => {
+describe('Probando isPathAbsolute', () => {
+  it('Deberia ser una función', () => {
     expect(typeof isPathAbsolute).toBe('function');
   })
-  it('Should convert relative route into absolute', () => {
+  it('Debería convertir la ruta relativa en absoluta', () => {
     let relativeRoute = './__mocks__/mock-pruebas';
     let absoluteRoute = 'C:\\Users\\Usuario\\Documents\\GitHub\\BOG005-MD-links\\__mocks__\\mock-pruebas';
 
