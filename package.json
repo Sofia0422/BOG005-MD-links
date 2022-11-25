@@ -28,9 +28,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest --verbose --coverage",
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "test": "jest --verbose --coverage",    
     "eslint": "eslint src/** cli.js index.js test/**",
     "eslint:fix": "npm run eslint -- --fix",
     "build": "npm run eslint:fix && npm tun test"
